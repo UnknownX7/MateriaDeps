@@ -3,7 +3,7 @@ for /f "skip=2 tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\Microsoft\Windows\Cu
 if %INSTALLDIR:~-5% neq FF7EC (
     set /p INSTALLDIR=Unable to find FF7EC install directory, please input it: 
 )
-
+:install
 if exist "%INSTALLDIR%/FF7EC.exe" (
     echo Installing to "%INSTALLDIR%"
     (
@@ -21,7 +21,8 @@ if exist "%INSTALLDIR%/FF7EC.exe" (
     echo Done!
     echo !!!IF YOU MOVE THE FOLDER THIS SCRIPT IS CONTAINED IN, YOU WILL NEED TO RUN THIS INSTALLER AGAIN!!!
 ) else (
-    echo Invalid directory: "%INSTALLDIR%"
+    set /p INSTALLDIR=Unabled to find "FF7EC.exe" in "%INSTALLDIR%", please input a different install directory: 
+    goto install
 )
 
 pause
